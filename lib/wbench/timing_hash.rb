@@ -2,6 +2,7 @@ module WBench
   class TimingHash < Hash
     def initialize(hash)
       # Remove 0 values as they indicate events that didn't occur
+      hash = hash.map { |key, value| [key, value.to_i] }
       hash = hash.delete_if { |key, value| value == 0 }
 
       # Grab the start time and offset the values against it.
